@@ -8,7 +8,6 @@ class Usuario{
   protected string telefone;
 
   public Usuario(string login_user, string senha_user, string email_user,string telefone_user){
-
     login=login_user;
     senha=senha_user;
     email=email_user;
@@ -44,7 +43,7 @@ class Usuario{
   public string getEmail(){
     return email;
   }
-
+  
   public void setTelefone(string telefone_us){
     telefone=telefone_us;
   }
