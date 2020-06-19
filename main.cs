@@ -181,13 +181,13 @@ class PessoaFisica:Usuario {
     int cvc;
     char concluir;
     double valor;
-
+     try{
     Console.WriteLine("\nADICIONAR DINHEIRO");
     Console.WriteLine("Valor(R$):");
     valor = Convert.ToDouble(Console.ReadLine());
     Console.WriteLine("Numéro do cartão: ");
     numCartao = Convert.ToInt32(Console.ReadLine());
-    Console.WriteLine("CVC: ");
+    Console.WriteLine("Código de segurança (CVC): ");
     cvc = Convert.ToInt32(Console.ReadLine());
 
     Console.Write("Concluir operação(s ou n)? ");
@@ -198,7 +198,11 @@ class PessoaFisica:Usuario {
     } else {
       Console.WriteLine("Operação falhou\n");
     }
-
+     }
+     catch(FormatException)
+        {
+          Console.WriteLine("Digite apenas números para concluir a operação.\nTente novamente!{0}");
+        }
   }
 
   public void consultarCarteira(){
@@ -213,6 +217,7 @@ class PessoaFisica:Usuario {
     int cvc;
     char concluir;
 
+    try{
     Console.WriteLine("\nPAGAMENTO CONTA");
     Console.WriteLine("Código de barras: ");
     codBarras = Console.ReadLine();
@@ -222,7 +227,7 @@ class PessoaFisica:Usuario {
     beneficiario = Console.ReadLine();
     Console.WriteLine("Numéro do cartão: ");
     numCartao = Convert.ToInt32(Console.ReadLine());
-    Console.WriteLine("CVC: ");
+    Console.WriteLine("Código de segurança (CVC): ");
     cvc = Convert.ToInt32(Console.ReadLine());
 
     Console.Write("Realizar pagamento de R$"+valorConta+" para "+beneficiario+"(s ou n): ");
@@ -233,7 +238,10 @@ class PessoaFisica:Usuario {
     } else {
       Console.WriteLine("Operação falhou\n");
     }
-    
+    }
+    catch(FormatException){
+      Console.WriteLine("ERRO!!!Formato incorreto");
+    }
   }
 
   public void pagarUsuario(PessoaFisica recebedor){
@@ -242,12 +250,13 @@ class PessoaFisica:Usuario {
     int cvc;
     char concluir;
     
+    try{
     Console.WriteLine("\nPAGAMENTO");
     Console.WriteLine("Valor(R$):");
     valorPagar = Convert.ToDouble(Console.ReadLine());
     Console.WriteLine("Numéro do cartão: ");
     numCartao = Convert.ToInt32(Console.ReadLine());
-    Console.WriteLine("CVC: ");
+    Console.WriteLine("Código de segurança (CVC): ");
     cvc = Convert.ToInt32(Console.ReadLine());
 
     Console.Write("Realizar pagamento de R$"+valorPagar+" para "+recebedor.nome+"(s ou n): ");
@@ -258,6 +267,10 @@ class PessoaFisica:Usuario {
     } else {
       Console.WriteLine("Operação falhou\n");
     }
+    }
+    catch(FormatException){
+      Console.WriteLine("ERRO!!!Formato incorreto");
+    }    
 
   }
 
@@ -268,12 +281,13 @@ class PessoaFisica:Usuario {
     char concluir;
     string nomeEmpresa;
     
+    try{
     Console.WriteLine("\nPAGAMENTO");
     Console.WriteLine("Valor(R$):");
     valorPagar = Convert.ToDouble(Console.ReadLine());
     Console.WriteLine("Numéro do cartão: ");
     numCartao = Convert.ToInt32(Console.ReadLine());
-    Console.WriteLine("CVC: ");
+    Console.WriteLine("Código de segurança (CVC): ");
     cvc = Convert.ToInt32(Console.ReadLine());
 
     nomeEmpresa = recebedor.getRazaoSocial();
@@ -285,8 +299,11 @@ class PessoaFisica:Usuario {
     } else {
       Console.WriteLine("Operação falhou\n");
     }
+    }
+    catch (FormatException){
+      Console.WriteLine("ERRO!!! Formato incorreto!\nTente Novamente");
+    }  
   }
-
 }
 
 class Pagamento{
@@ -387,7 +404,8 @@ class MainClass {
       //PARA TESTES
       PessoaFisica Bob = new PessoaFisica("00008008", "Bob Tosco", "999666", "01/02/1970", "login123", "senha456456", "bobtosco@hotmail.com", "55215889");
       PessoaJuridica empresa1 = new PessoaJuridica("00055500","Empresa","55888","string ramo_pj","log","sn","email","558877");
-    
+      
+    try{  
       while(continuar){
         Console.WriteLine("OPERAÇÕES: ");
         Console.WriteLine("1- Consultar carteira");
@@ -425,7 +443,11 @@ class MainClass {
         if(concluir == 's'){
           continuar = false;
         }
-
+      }
+    }
+      catch(IndexOutOfRangeException){
+        Console.WriteLine("É necessário escolher uma opção!\nTente Novamente.");
+      }  
     }
   }
     
@@ -440,8 +462,8 @@ class MainClass {
       string email;
       string telefone;
 
-      Console.WriteLine("\nCADASTRO");
-      Console.WriteLine("Nome: ");
+      Console.WriteLine("\nCADASTRO DO USUÁRIO");
+      Console.WriteLine("Digite seu nome: ");
       nome = Console.ReadLine();
       Console.WriteLine("Email: ");
       email = Console.ReadLine();
@@ -451,11 +473,11 @@ class MainClass {
       cpf = Console.ReadLine();
       Console.WriteLine("RG: ");
       rg = Console.ReadLine();
-      Console.WriteLine("Nascimento: ");
+      Console.WriteLine("Data de Nascimento: ");
       nascimento = Console.ReadLine();
-      Console.WriteLine("login: ");
+      Console.WriteLine("Digite o seu login: ");
       login = Console.ReadLine();
-      Console.WriteLine("Senha: ");
+      Console.WriteLine("Agora digite uma senha: ");
       senha = Console.ReadLine();
     
       
