@@ -449,7 +449,6 @@ class MainClass {
         Console.WriteLine("É necessário escolher uma opção!\nTente Novamente.");
       }  
     }
-  }
     
     public static PessoaFisica CadastrarUsuario(){
   
