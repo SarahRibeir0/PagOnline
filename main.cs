@@ -372,8 +372,95 @@ class Pagamento{
 
 }
 
+
 class MainClass {
-  public static void Main (string[] args) {
-    Console.WriteLine ("Hello World");
+    public static void Main (string[] args) {
+
+      bool continuar = true;
+      int operacao = 0;
+      char concluir;
+
+      //CADASTRO USUARIO
+      PessoaFisica usuario = new PessoaFisica();
+      usuario = CadastrarUsuario();
+
+      //PARA TESTES
+      PessoaFisica Bob = new PessoaFisica("00008008", "Bob Tosco", "999666", "01/02/1970", "login123", "senha456456", "bobtosco@hotmail.com", "55215889");
+      PessoaJuridica empresa1 = new PessoaJuridica("00055500","Empresa","55888","string ramo_pj","log","sn","email","558877");
+    
+      while(continuar){
+        Console.WriteLine("OPERAÇÕES: ");
+        Console.WriteLine("1- Consultar carteira");
+        Console.WriteLine("2- Adicionar dinheiro");
+        Console.WriteLine("3- Pagar conta");
+        Console.WriteLine("4- Pagar para pessoa física");
+        Console.WriteLine("5- Pagar para pessoa jurídica");
+        Console.WriteLine("0- Sair");
+        Console.Write("Escolha a operação desejada: ");
+        operacao = Convert.ToInt32(Console.ReadLine()[0]-48);
+        
+        switch(operacao) {
+          case 1:
+            usuario.consultarCarteira();
+            break;
+          case 2:
+            usuario.adicionarDinheiro();
+            break;
+          case 3:
+            usuario.pagarConta();
+            break;
+          case 4:
+            usuario.pagarUsuario(Bob);
+            break;
+          case 5:
+            usuario.pagarEmpresa(empresa1);
+            break;
+          default:
+              Console.WriteLine("ERRO AO EXECUTAR.\nEscolha apenas uma das opções acima!");
+            break;
+        }
+        
+        Console.Write("\nFechar(s ou n): ");
+        concluir = Console.ReadLine()[0];
+        if(concluir == 's'){
+          continuar = false;
+        }
+
+    }
   }
+    
+    public static PessoaFisica CadastrarUsuario(){
+  
+      string cpf;
+      string nome;
+      string rg;
+      string nascimento;
+      string login;
+      string senha;
+      string email;
+      string telefone;
+
+      Console.WriteLine("\nCADASTRO");
+      Console.WriteLine("Nome: ");
+      nome = Console.ReadLine();
+      Console.WriteLine("Email: ");
+      email = Console.ReadLine();
+      Console.WriteLine("Telefone: ");
+      telefone = Console.ReadLine();
+      Console.WriteLine("CPF: ");
+      cpf = Console.ReadLine();
+      Console.WriteLine("RG: ");
+      rg = Console.ReadLine();
+      Console.WriteLine("Nascimento: ");
+      nascimento = Console.ReadLine();
+      Console.WriteLine("login: ");
+      login = Console.ReadLine();
+      Console.WriteLine("Senha: ");
+      senha = Console.ReadLine();
+    
+      
+      PessoaFisica usuario = new PessoaFisica(cpf, nome, rg, nascimento, login, senha, email, telefone);
+
+      return usuario;
+    }
 }
